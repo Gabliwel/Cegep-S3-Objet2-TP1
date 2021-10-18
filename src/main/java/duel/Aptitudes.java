@@ -49,4 +49,10 @@ public class Aptitudes
 			throw new IllegalArgumentException("The total of the aptitudes should be inferior or equal to 100");
 		}
 	}
+	
+	@Override
+	public String toString()
+	{
+		return "Aptitudes:";
+	}
 }
