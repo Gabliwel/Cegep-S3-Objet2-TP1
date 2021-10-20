@@ -53,6 +53,10 @@ public class Aptitudes
 	@Override
 	public String toString()
 	{
-		return "Aptitudes:";
+		return "   Aptitude:\n"
+				+ "      Strenght = " + strength + "\n" 
+				+ "      Dexterity = " + dexterity + "\n"
+				+ "      Intelligence = " + intelligence + "\n" 
+				+ "      Focus = " + focus + "\n";
 	}
 }

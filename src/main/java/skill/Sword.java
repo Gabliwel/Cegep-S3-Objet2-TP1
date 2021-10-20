@@ -1,0 +1,41 @@
+package skill;
+import duel.Fighter;
+import duel.Skill;
+
+public class Sword extends BasicSkill implements Skill
+{
+	public Sword(int impact)
+	{
+		super(impact);
+	}
+
+	@Override
+	public int getPower(Fighter fighter) 
+	{
+		return fighter.getStrength() * super.getValue() / 100;
+	}
+	
+	@Override
+	public String toString() 
+	{
+		return "Sword impact = " + super.getValue() + "\n";
+	}
+	
+	@Override
+	public boolean isAttackType() 
+	{
+		return true;
+	}
+
+	@Override
+	public boolean isParadeType() 
+	{
+		return false;
+	}
+
+	@Override
+	public boolean isHealingType() 
+	{
+		return false;
+	}
+}

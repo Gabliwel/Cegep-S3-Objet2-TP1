@@ -14,6 +14,7 @@ public abstract class Fighter
 	
 	public Fighter(String name, Aptitudes aptitudes, Skill skill1, Skill skill2)
 	{
+		this.name = name;
 		this.aptitudes = aptitudes;
 		skills.add(skill1);
 		skills.add(skill2);
@@ -77,5 +78,20 @@ public abstract class Fighter
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public String toString()
+	{
+		String firstPart = "Fighter " + name + "{\n" + aptitudes.toString();
+		String middlePart = "";
+		int i = 1;
+		for(Skill skillInList: skills)
+		{
+			middlePart += "   (Skill #" + i + ")" + skillInList.toString();
+			i++;
+		}
+		String endPart = "   Healthpoint = " + healthPoint + "\n}\n";
+		return firstPart + middlePart + endPart;
 	}
 }
