@@ -2,5 +2,9 @@ package duel;
 
 public interface Skill 
 {
-	//Vide pour l'instant
+	public int getPower(Fighter fighter);
+	public String toString();
+	public boolean isAttackType();
+	public boolean isParadeType();
+	public boolean isHealingType();
 }
