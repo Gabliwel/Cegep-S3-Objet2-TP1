@@ -1,4 +1,6 @@
-package duel;
+package skill;
+
+import duel.Fighter;
 
 public class SkillMock implements Skill
 {

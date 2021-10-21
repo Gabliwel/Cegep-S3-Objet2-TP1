@@ -3,6 +3,7 @@ package duel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import duel.fighter.*;
+import skill.SkillMock;
 
 public class FighterFactoryTest 
 {

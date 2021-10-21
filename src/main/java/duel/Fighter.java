@@ -2,6 +2,8 @@ package duel;
 
 import java.util.ArrayList;
 
+import skill.Skill;
+
 public abstract class Fighter 
 {
 	public static final int INITIAL_HEALTH = 200;

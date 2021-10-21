@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import skill.SkillMock;
+
 public class FighterTest 
 {
 	public static final Aptitudes ANY_APTITUDES = new Aptitudes(25, 25, 25, 25);

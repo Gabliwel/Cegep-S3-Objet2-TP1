@@ -2,7 +2,7 @@ package duel.fighter;
 
 import duel.Aptitudes;
 import duel.Fighter;
-import duel.Skill;
+import skill.Skill;
 
 public class Warrior extends Fighter
 {

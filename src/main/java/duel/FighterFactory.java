@@ -1,6 +1,7 @@
 package duel;
 
 import duel.fighter.*;
+import skill.Skill;
 
 public class FighterFactory 
 {
