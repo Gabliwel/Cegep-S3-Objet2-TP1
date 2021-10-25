@@ -7,6 +7,7 @@ public class FighterFactory
 	public Fighter giveMeStrategyForFighter(FighterType type, String name, Aptitudes aptitudes, Skill skill1, Skill skill2)
 	{
 		Fighter fighter;
+		//FIXME: Utilise un switch de Java 14
 		if(type == FighterType.Athlete)
 		{
 			fighter = new Athlete(name, aptitudes, skill1, skill2);

@@ -15,6 +15,7 @@ public class Warrior extends Fighter
 	
 	private void validateAthleteAptitudes()
 	{
+		//FIXME: Constante magique, à extraire! (G25)
 		if(getStrength() < getDexterity() + 10 || getDexterity() + 10 < getIntelligence() + 10 || getIntelligence() + 10 < getFocus())
 		{
 			throw new IllegalArgumentException("Warrior must respect warrior atributes rules");

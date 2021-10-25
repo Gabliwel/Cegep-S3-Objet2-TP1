@@ -14,6 +14,7 @@ public class Wizard extends Fighter
 	
 	private void validateAthleteAptitudes()
 	{
+		//FIXME: Constante magique, à extraire! (G25)
 		if(getIntelligence() < Math.max(getStrength(), getDexterity()) + 15 || getFocus() < Math.max(getStrength(), getDexterity()) + 15)
 		{
 			throw new IllegalArgumentException("Wizard must respect wizard atributes rules");

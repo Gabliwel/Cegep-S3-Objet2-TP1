@@ -12,12 +12,14 @@ public abstract class Fighter
 	private ArrayList<Skill> skills = new ArrayList<Skill>();
 	private int healthPoint;
 	
+	//FIXME: Trop de paramètres dans la fonction (F1), tu peux utiliser une liste de skills
 	public Fighter(String name, Aptitudes aptitudes, Skill skill1, Skill skill2)
 	{
 		this.name = name;
 		this.aptitudes = aptitudes;
 		skills.add(skill1);
 		skills.add(skill2);
+		//FIXME: Tu peux extraire tes additions d'aptitude dans une belle méthode de la classe aptitude :)
 		this.healthPoint = INITIAL_HEALTH - (getStrength() + getDexterity() + getIntelligence() + getFocus());
 	}
 	
@@ -70,6 +72,7 @@ public abstract class Fighter
 	
 	public boolean hasTheSkill(Skill skill)
 	{
+		//FIXME: DRY -> il existe déjà, dans l'interface List, une méthode 'contains' qui vérifie si un item est dans la liste! 
 		for(Skill skillInList: skills)
 		{
 			if(skillInList == skill)
