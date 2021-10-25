@@ -1,6 +1,5 @@
 package skill;
 import duel.Fighter;
-import duel.Skill;
 
 public class Remedy extends BasicSkill implements Skill
 {

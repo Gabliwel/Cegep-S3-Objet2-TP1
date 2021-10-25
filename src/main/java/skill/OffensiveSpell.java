@@ -1,6 +1,5 @@
 package skill;
 import duel.Fighter;
-import duel.Skill;
 
 public class OffensiveSpell extends BasicSkill implements Skill
 {

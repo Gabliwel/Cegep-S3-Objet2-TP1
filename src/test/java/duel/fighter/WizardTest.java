@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import duel.Aptitudes;
-import duel.SkillMock;
+import skill.SkillMock;
 
 public class WizardTest 
 {

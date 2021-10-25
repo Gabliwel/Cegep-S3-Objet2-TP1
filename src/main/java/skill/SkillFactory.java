@@ -1,6 +1,5 @@
 package skill;
 
-import duel.Skill;
 import skill.type.*;
 
 public class SkillFactory 
