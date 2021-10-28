@@ -1,30 +1,24 @@
 package duel;
 
+import java.util.List;
+
 import duel.fighter.*;
 import skill.Skill;
 
 public class FighterFactory 
 {
-	public Fighter giveMeStrategyForFighter(FighterType type, String name, Aptitudes aptitudes, Skill skill1, Skill skill2)
+	public Fighter giveMeStrategyForFighter(FighterType type, String name, Aptitudes aptitudes, List<Skill> skills)
 	{
-		Fighter fighter;
-		//FIXME: Utilise un switch de Java 14
-		if(type == FighterType.Athlete)
+		if(type != null)
 		{
-			fighter = new Athlete(name, aptitudes, skill1, skill2);
+			Fighter fighter = switch(type)
+			{
+				case ATHLETE -> new Athlete(name, aptitudes, skills);
+				case WARRIOR -> new Warrior(name, aptitudes, skills);
+				case WIZARD -> new Wizard(name, aptitudes, skills);
+			};
+			return fighter;
 		}
-		else if(type == FighterType.Warrior)
-		{
-			fighter = new Warrior(name, aptitudes, skill1, skill2);
-		}
-		else if(type == FighterType.Wizard)
-		{
-			fighter = new Wizard(name, aptitudes, skill1, skill2);
-		}
-		else
-		{
-			throw new IllegalArgumentException("Fighter type must exist");
-		}
-		return fighter;
+		throw new IllegalArgumentException("Fighter type must exist");
 	}
 }

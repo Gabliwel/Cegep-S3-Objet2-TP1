@@ -1,6 +1,7 @@
 package duel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import skill.Skill;
 
@@ -8,23 +9,24 @@ public abstract class Fighter
 {
 	public static final int INITIAL_HEALTH = 200;
 	public static final int DEAD_HEALTH_VALUE = 0;
+	public static final int DEFAULT_NUMBER_OF_SKILL = 2;
 	
 	private String name;
 	private Aptitudes aptitudes;
-	private ArrayList<Skill> skills = new ArrayList<Skill>();
+	private ArrayList<Skill> skills;
 	private int healthPoint;
 	
-	//FIXME: Trop de paramètres dans la fonction (F1), tu peux utiliser une liste de skills
-	public Fighter(String name, Aptitudes aptitudes, Skill skill1, Skill skill2)
+	public Fighter(String name, Aptitudes aptitudes, List<Skill> skills)
 	{
+		validateFighterAptitudes(aptitudes);
+		validateSkillList(skills);
+		
 		this.name = name;
 		this.aptitudes = aptitudes;
-		skills.add(skill1);
-		skills.add(skill2);
-		//FIXME: Tu peux extraire tes additions d'aptitude dans une belle méthode de la classe aptitude :)
-		this.healthPoint = INITIAL_HEALTH - (getStrength() + getDexterity() + getIntelligence() + getFocus());
+		this.skills = new ArrayList<Skill>(skills);
+		this.healthPoint = INITIAL_HEALTH - aptitudes.getTotalAptitudes();
 	}
-	
+
 	public String getName()
 	{
 		return this.name;
@@ -55,6 +57,16 @@ public abstract class Fighter
 		return this.healthPoint;
 	}
 	
+	public void increaseAllAptitudes()
+	{
+		aptitudes.increaseAllAptitudes();
+	}
+	
+	public void decreaseAllAptitudes()
+	{
+		aptitudes.decreaseAllAptitudes();
+	}
+	
 	public void decreaseHealthPoints(int damage) 
 	{
 		if(healthPoint - damage > DEAD_HEALTH_VALUE)
@@ -67,6 +79,11 @@ public abstract class Fighter
 		}
 	}
 	
+	public void increaseHealthPoints(int heal) 
+	{
+		this.healthPoint += heal;
+	}
+	
 	public boolean isAlive()
 	{
 		return this.healthPoint != DEAD_HEALTH_VALUE;
@@ -74,15 +91,80 @@ public abstract class Fighter
 	
 	public boolean hasTheSkill(Skill skill)
 	{
-		//FIXME: DRY -> il existe déjà, dans l'interface List, une méthode 'contains' qui vérifie si un item est dans la liste! 
-		for(Skill skillInList: skills)
+		return skills.contains(skill);
+	}
+	
+	public void removeSkill(Skill skill)
+	{
+		skills.remove(skill);
+	}
+	
+	public boolean canAttack()
+	{
+		for(Skill skill : skills)
 		{
-			if(skillInList == skill)
+			if(skill.isAttackType())
 			{
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public boolean canDefend()
+	{
+		for(Skill skill : skills)
+		{
+			if(skill.isParadeType()||skill.isAttackType())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public int getAttack()
+	{
+		for(Skill skill : skills)
+		{
+			if(skill.isAttackType())
+			{
+				return skill.getPower(this);
+			}
+		}
+		throw new IllegalArgumentException("The skill list has no attack skill");
+	}
+	
+	public int getDefense()
+	{
+		for(Skill skill : skills)
+		{
+			if(skill.isAttackType()||skill.isParadeType())
+			{
+				return skill.getPower(this);
+			}
+		}
+		throw new IllegalArgumentException("The skill list has no attack or parade skill");
+	}
+	
+	public void addSkill(Skill newSkill)
+	{
+		skills.add(newSkill);
+	}
+	
+	public abstract void validateFighterAptitudes(Aptitudes aptitudes);
+	
+	private void validateSkillList(List<Skill> skills) 
+	{
+		if(skills == null || skills.size()!=DEFAULT_NUMBER_OF_SKILL)
+		{
+			throw new IllegalArgumentException("The skill list must have two skills");
+		}
+		if(skills.get(0) == null || skills.get(1) == null)
+		{
+			throw new IllegalArgumentException("The skills in the list should not be null");
+		}
+		
 	}
 	
 	@Override
