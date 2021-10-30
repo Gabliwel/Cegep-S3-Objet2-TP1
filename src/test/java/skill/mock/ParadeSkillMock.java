@@ -1,15 +1,16 @@
-package skill;
+package skill.mock;
 
 import duel.Fighter;
+import skill.Skill;
 
-public class SkillMock implements Skill
+public class ParadeSkillMock implements Skill
 {
 	@Override
 	public int getPower(Fighter fighter) 
 	{
-		return 0;
+		return 1;
 	}
-
+	
 	@Override
 	public String toString() 
 	{
@@ -25,7 +26,7 @@ public class SkillMock implements Skill
 	@Override
 	public boolean isParadeType() 
 	{
-		return false;
+		return true;
 	}
 
 	@Override

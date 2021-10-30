@@ -1,5 +1,7 @@
 package duel.fighter;
 
+import java.util.List;
+
 import duel.Aptitudes;
 import duel.Fighter;
 import skill.Skill;
@@ -8,18 +10,16 @@ public class Athlete extends Fighter
 {
 	public static final int MAX_ATHLETE_ATTRIBUTE_VALUE = 20;
 	
-	public Athlete(String name, Aptitudes aptitudes, Skill skill1, Skill skill2) 
+	public Athlete(String name, Aptitudes aptitudes, List<Skill> skills) 
 	{
-		super(name, aptitudes, skill1, skill2);
-		validateAthleteAptitudes();
+		super(name, aptitudes, skills);
 	}
 
-	//FIXME: Cette structure est bonne, mais non-contraignante.  Si on ajoute un autre type de Fighter, comme un Thief, rien ne force ce Thief à faire une validation.
-	//Alors que si cette méthode est une méthode abstraite de la super classe et appelée dans le super constructeur, on force le Thief à être conscient de sa validation.
-	private void validateAthleteAptitudes()
+	@Override
+	public void validateFighterAptitudes(Aptitudes aptitudes)
 	{
-		if(getStrength() < MAX_ATHLETE_ATTRIBUTE_VALUE || getDexterity() < MAX_ATHLETE_ATTRIBUTE_VALUE 
-				|| getIntelligence() < MAX_ATHLETE_ATTRIBUTE_VALUE || getFocus() < MAX_ATHLETE_ATTRIBUTE_VALUE)
+		if(aptitudes.getStrength() < MAX_ATHLETE_ATTRIBUTE_VALUE || aptitudes.getDexterity() < MAX_ATHLETE_ATTRIBUTE_VALUE 
+				|| aptitudes.getIntelligence() < MAX_ATHLETE_ATTRIBUTE_VALUE || aptitudes.getFocus() < MAX_ATHLETE_ATTRIBUTE_VALUE)
 		{
 			throw new IllegalArgumentException("Athlete must respect athlete atributes rules");
 		}

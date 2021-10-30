@@ -3,6 +3,7 @@ package duel;
 public class Aptitudes 
 {
 	public static final int MAX_APTITUDES_POINTS = 100;
+	public static final int MIN_APTITUDE_VALUE = 1;
 	
 	private int strength;
 	private int dexterity;
@@ -36,6 +37,40 @@ public class Aptitudes
 	public int getFocus()
 	{
 		return this.focus;
+	}
+	
+	
+	public void increaseAllAptitudes()
+	{
+		this.strength++;
+		this.dexterity++;
+		this.intelligence++;
+		this.focus++;
+	}
+	
+	public void decreaseAllAptitudes()
+	{
+		if(this.strength!=MIN_APTITUDE_VALUE)
+		{
+			this.strength--;
+		}
+		if(this.dexterity!=MIN_APTITUDE_VALUE)
+		{
+			this.dexterity--;
+		}
+		if(this.intelligence!=MIN_APTITUDE_VALUE)
+		{
+			this.intelligence--;
+		}
+		if(this.focus!=MIN_APTITUDE_VALUE)
+		{
+			this.focus--;
+		}
+	}
+	
+	public int getTotalAptitudes()
+	{
+		return this.strength + this.dexterity + this.intelligence + this.focus;
 	}
 	
 	private void validateAptitudes(int strength, int dexterity, int intelligence, int focus)

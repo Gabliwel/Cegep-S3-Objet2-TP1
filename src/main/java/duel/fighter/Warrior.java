@@ -1,22 +1,26 @@
 package duel.fighter;
 
+import java.util.List;
+
 import duel.Aptitudes;
 import duel.Fighter;
 import skill.Skill;
 
 public class Warrior extends Fighter
 {
+	public static final int WARRIOR_ADDED_VALUE = 10;
 	
-	public Warrior(String name, Aptitudes aptitudes, Skill skill1, Skill skill2) 
+	public Warrior(String name, Aptitudes aptitudes, List<Skill> skills) 
 	{
-		super(name, aptitudes, skill1, skill2);
-		validateAthleteAptitudes();
+		super(name, aptitudes, skills);
 	}
 	
-	private void validateAthleteAptitudes()
+	@Override
+	public void validateFighterAptitudes(Aptitudes aptitudes)
 	{
-		//FIXME: Constante magique, à extraire! (G25)
-		if(getStrength() < getDexterity() + 10 || getDexterity() + 10 < getIntelligence() + 10 || getIntelligence() + 10 < getFocus())
+		if(aptitudes.getStrength() < aptitudes.getDexterity() + WARRIOR_ADDED_VALUE 
+				|| aptitudes.getDexterity() + WARRIOR_ADDED_VALUE < aptitudes.getIntelligence() + WARRIOR_ADDED_VALUE 
+				|| aptitudes.getIntelligence() + WARRIOR_ADDED_VALUE < aptitudes.getFocus())
 		{
 			throw new IllegalArgumentException("Warrior must respect warrior atributes rules");
 		}

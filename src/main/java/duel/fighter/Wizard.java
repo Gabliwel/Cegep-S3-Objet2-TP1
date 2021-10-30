@@ -1,21 +1,25 @@
 package duel.fighter;
 
+import java.util.List;
+
 import duel.Aptitudes;
 import duel.Fighter;
 import skill.Skill;
 
 public class Wizard extends Fighter
 {
-	public Wizard(String name, Aptitudes aptitudes, Skill skill1, Skill skill2) 
+	public static final int WIZARD_ADDED_VALUE = 15;
+	
+	public Wizard(String name, Aptitudes aptitudes, List<Skill> skills) 
 	{
-		super(name, aptitudes, skill1, skill2);
-		validateAthleteAptitudes();
+		super(name, aptitudes, skills);
 	}
 	
-	private void validateAthleteAptitudes()
+	@Override
+	public void validateFighterAptitudes(Aptitudes aptitudes)
 	{
-		//FIXME: Constante magique, à extraire! (G25)
-		if(getIntelligence() < Math.max(getStrength(), getDexterity()) + 15 || getFocus() < Math.max(getStrength(), getDexterity()) + 15)
+		if(aptitudes.getIntelligence() < Math.max(aptitudes.getStrength(), aptitudes.getDexterity()) + WIZARD_ADDED_VALUE 
+				|| aptitudes.getFocus() < Math.max(aptitudes.getStrength(), aptitudes.getDexterity()) + WIZARD_ADDED_VALUE)
 		{
 			throw new IllegalArgumentException("Wizard must respect wizard atributes rules");
 		}

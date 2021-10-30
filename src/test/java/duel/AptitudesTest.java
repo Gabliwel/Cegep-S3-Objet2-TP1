@@ -1,6 +1,7 @@
 package duel;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
@@ -99,5 +100,48 @@ public class AptitudesTest
 	void when_focusValueIsInferiorTo0_then_doesNotcreateAptitudesObject() 
 	{
 		assertThrows(IllegalArgumentException.class, () -> new Aptitudes(25, 25, 25, -1));
+	}
+	
+	//augmentation et diminution de toutes les aptitudes
+	@Test
+	void when_callIncreaseAllAptitudes_then_allAptitudesValueAreIncreaseBy1()
+	{
+		Aptitudes aptitude = new Aptitudes(2, 2, 2, 2);
+		aptitude.increaseAllAptitudes();
+		testAptitudes(aptitude, 3);
+	}
+	
+	@Test
+	void when_callDecreaseAllAptitudes_then_allAptitudesValueAreDecreaseBy1()
+	{
+		Aptitudes aptitude = new Aptitudes(2, 2, 2, 2);
+		aptitude.decreaseAllAptitudes();
+		testAptitudes(aptitude, 1);
+	}
+	
+	@Test
+	void when_callDecreaseAllAptitudesAndAptitudeValueIsAt1_then_aptitudeValueIsStillAt1()
+	{
+		Aptitudes aptitude = new Aptitudes(1, 1, 1, 1);
+		aptitude.decreaseAllAptitudes();
+		testAptitudes(aptitude, 1);
+	}
+	
+	//autre test
+	@Test
+	void when_callsTotalOfAllAptitudes_then_returnsTotalOfAllAptitudes()
+	{
+		int expectedTotal = 100;
+		Aptitudes aptitudes = new Aptitudes(25, 25, 25, 25);
+		assertEquals(expectedTotal, aptitudes.getTotalAptitudes());
+	}
+	
+	//pour permettre de tester toutes les aptitudes
+	private void testAptitudes(Aptitudes aptitudes, int expectedValue)
+	{
+		assertEquals(aptitudes.getStrength(), expectedValue);
+		assertEquals(aptitudes.getDexterity(), expectedValue);
+		assertEquals(aptitudes.getIntelligence(), expectedValue);
+		assertEquals(aptitudes.getFocus(), expectedValue);
 	}
 }

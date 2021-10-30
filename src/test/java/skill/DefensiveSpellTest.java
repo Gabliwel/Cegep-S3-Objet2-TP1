@@ -3,9 +3,14 @@ package skill;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import duel.Aptitudes;
 import duel.FighterMock;
+import skill.mock.SkillMock;
 
 public class DefensiveSpellTest 
 {
@@ -36,9 +41,14 @@ public class DefensiveSpellTest
 		int skillValue = 50;
 		int intelligence = 3;
 		DefensiveSpell skill = new DefensiveSpell(skillValue);
-		FighterMock fighter = new FighterMock("", new Aptitudes(1, 2, intelligence, 4), skill, new SkillMock());
+		List<Skill> skillList = new ArrayList<Skill>();
+		skillList.add(new SkillMock());
+		skillList.add(skill);
+		FighterMock fighter = new FighterMock("", new Aptitudes(1, 2, intelligence, 4), skillList);
+		
 		//FIXME: Pas besoin de refaire le calcul, juste avoir la valeur finale.
 		int expectedResult = (intelligence * skillValue / 100)*3;
+		
 		int result = skill.getPower(fighter);
 		assertEquals(expectedResult, result);
 	}
