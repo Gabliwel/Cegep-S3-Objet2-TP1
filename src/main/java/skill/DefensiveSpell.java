@@ -11,6 +11,7 @@ public class DefensiveSpell extends BasicSkill implements Skill
 	@Override
 	public int getPower(Fighter fighter) 
 	{
+		//FIXME: Constante magique, à extraire! (G25)
 		return (fighter.getIntelligence() * super.getValue() / 100) * 3;
 	}
 

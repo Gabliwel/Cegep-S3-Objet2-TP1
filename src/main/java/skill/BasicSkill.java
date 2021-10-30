@@ -17,6 +17,8 @@ public abstract class BasicSkill
 
 	private void validateSkillValue(int value) 
 	{
+		//FIXME: Constante magique, à extraire! (G25)
+		//FIXME: Encapsule la condition dans une méthode (G28) 
 		if(20 > value || value > 100)
 		{
 			throw new IllegalArgumentException("Skill value must respect min of 20 and max of 100");

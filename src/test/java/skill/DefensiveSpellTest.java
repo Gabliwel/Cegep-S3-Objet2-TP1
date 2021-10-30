@@ -24,16 +24,20 @@ public class DefensiveSpellTest
 	@Test
 	void when_checkIfDefensiveSpellIsAnHealingTypeSkill_then_returnsFalse()
 	{
+		//FIXME: Fais la séparation Arrange - Act - ASsert, sinon ce n'est pas évident ce qui est sous test
+		//Est-ce le constructeur, est-ce isHealingType?
 		assertFalse(new DefensiveSpell(50).isHealingType());
 	}
 	
 	@Test
 	void when_getsDefensiveSpellPower_then_returnsDefensiveSpellPowerBasedOnValueAndFighterAptitude()
 	{
+		//FIXME: Fais la séparation Arrange - Act - ASsert, sinon c'est juste un gros blob de code qui doit être décodé!
 		int skillValue = 50;
 		int intelligence = 3;
 		DefensiveSpell skill = new DefensiveSpell(skillValue);
 		FighterMock fighter = new FighterMock("", new Aptitudes(1, 2, intelligence, 4), skill, new SkillMock());
+		//FIXME: Pas besoin de refaire le calcul, juste avoir la valeur finale.
 		int expectedResult = (intelligence * skillValue / 100)*3;
 		int result = skill.getPower(fighter);
 		assertEquals(expectedResult, result);

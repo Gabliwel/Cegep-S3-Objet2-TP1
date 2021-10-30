@@ -11,6 +11,7 @@ public class Shield extends BasicSkill implements Skill
 	@Override
 	public int getPower(Fighter fighter) 
 	{
+		//FIXME: Constante magique, à extraire! (G25)
 		return fighter.getDexterity() * super.getValue() / 100;
 	}
 	

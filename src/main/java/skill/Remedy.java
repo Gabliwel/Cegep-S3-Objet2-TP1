@@ -11,6 +11,7 @@ public class Remedy extends BasicSkill implements Skill
 	@Override
 	public int getPower(Fighter fighter) 
 	{
+		//FIXME: Constante magique, à extraire! (G25)
 		return fighter.getFocus() * super.getValue() / 100;
 	}
 	
