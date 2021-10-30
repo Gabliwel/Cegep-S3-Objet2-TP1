@@ -13,7 +13,6 @@ public class BasicSkillTest
 	@Test
 	void when_skillValueIsHigherThanMin_then_skillIsCreated()
 	{
-		//FIXME: Test faible...  Est-ce que j'ai bien mis la bonne valeur à la bonne place?
 		assertDoesNotThrow(() -> new BasicSkillMock(min+1));
 	}
 	

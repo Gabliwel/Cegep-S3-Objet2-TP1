@@ -2,6 +2,11 @@ package skill;
 
 public abstract class BasicSkill
 {
+	public static final int MIN_VALUE = 20;
+	public static final int MAX_VALUE = 100;
+	public static final int DIVISION_VALUE = 100;
+	public static final int MULTIPLICATION_VALUE = 3;
+	
 	private int value;
 	
 	public BasicSkill(int value)
@@ -14,15 +19,33 @@ public abstract class BasicSkill
 	{
 		return value;
 	}
+	
+	public boolean isAttackType() 
+	{
+		return false;
+	}
+
+	public boolean isParadeType() 
+	{
+		return false;
+	}
+
+	public boolean isHealingType() 
+	{
+		return false;
+	}
 
 	private void validateSkillValue(int value) 
 	{
-		//FIXME: Constante magique, à extraire! (G25)
-		//FIXME: Encapsule la condition dans une méthode (G28) 
-		if(20 > value || value > 100)
+		if(isInvalidValue(value))
 		{
 			throw new IllegalArgumentException("Skill value must respect min of 20 and max of 100");
 		}
+	}
+	
+	private boolean isInvalidValue(int value)
+	{
+		return MIN_VALUE > value || value > MAX_VALUE;
 	}
 	
 	@Override

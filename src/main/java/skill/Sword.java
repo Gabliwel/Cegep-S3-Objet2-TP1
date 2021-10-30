@@ -11,8 +11,7 @@ public class Sword extends BasicSkill implements Skill
 	@Override
 	public int getPower(Fighter fighter) 
 	{
-		//FIXME: Constante magique, à extraire! (G25)
-		return fighter.getStrength() * super.getValue() / 100;
+		return fighter.getStrength() * super.getValue() / DIVISION_VALUE;
 	}
 	
 	@Override
@@ -25,17 +24,5 @@ public class Sword extends BasicSkill implements Skill
 	public boolean isAttackType() 
 	{
 		return true;
-	}
-
-	@Override
-	public boolean isParadeType() 
-	{
-		return false;
-	}
-
-	@Override
-	public boolean isHealingType() 
-	{
-		return false;
 	}
 }

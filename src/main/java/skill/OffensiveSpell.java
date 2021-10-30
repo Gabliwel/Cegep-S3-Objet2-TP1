@@ -11,8 +11,7 @@ public class OffensiveSpell extends BasicSkill implements Skill
 	@Override
 	public int getPower(Fighter fighter) 
 	{
-		//FIXME: Constante magique, à extraire! (G25)
-		return (fighter.getIntelligence() * super.getValue() / 100) * 3;
+		return (fighter.getIntelligence() * super.getValue() / DIVISION_VALUE) * MULTIPLICATION_VALUE;
 	}
 	
 	@Override
@@ -25,17 +24,5 @@ public class OffensiveSpell extends BasicSkill implements Skill
 	public boolean isAttackType() 
 	{
 		return true;
-	}
-
-	@Override
-	public boolean isParadeType() 
-	{
-		return false;
-	}
-
-	@Override
-	public boolean isHealingType() 
-	{
-		return false;
 	}
 }

@@ -11,8 +11,7 @@ public class Shield extends BasicSkill implements Skill
 	@Override
 	public int getPower(Fighter fighter) 
 	{
-		//FIXME: Constante magique, à extraire! (G25)
-		return fighter.getDexterity() * super.getValue() / 100;
+		return fighter.getDexterity() * super.getValue() / DIVISION_VALUE;
 	}
 	
 	@Override
@@ -22,20 +21,8 @@ public class Shield extends BasicSkill implements Skill
 	}
 	
 	@Override
-	public boolean isAttackType() 
-	{
-		return false;
-	}
-
-	@Override
 	public boolean isParadeType() 
 	{
 		return true;
-	}
-
-	@Override
-	public boolean isHealingType() 
-	{
-		return false;
 	}
 }

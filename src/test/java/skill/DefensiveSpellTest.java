@@ -14,42 +14,40 @@ import skill.mock.SkillMock;
 
 public class DefensiveSpellTest 
 {
+	public static final DefensiveSpell ANY_DEFENSIVE_SPELL = new DefensiveSpell(50);
+	
 	@Test
 	void when_checkIfDefensiveSpellIsAnAttackTypeSkill_then_returnsFalse()
 	{
-		assertFalse(new DefensiveSpell(50).isAttackType());
+		assertFalse(ANY_DEFENSIVE_SPELL.isAttackType());
 	}
 	
 	@Test
 	void when_checkIfDefensiveSpellIsAParadeTypeSkill_then_returnsTrue()
 	{
-		assertTrue(new DefensiveSpell(50).isParadeType());
+		assertTrue(ANY_DEFENSIVE_SPELL.isParadeType());
 	}
 	
 	@Test
 	void when_checkIfDefensiveSpellIsAnHealingTypeSkill_then_returnsFalse()
 	{
-		//FIXME: Fais la séparation Arrange - Act - ASsert, sinon ce n'est pas évident ce qui est sous test
-		//Est-ce le constructeur, est-ce isHealingType?
-		assertFalse(new DefensiveSpell(50).isHealingType());
+		assertFalse(ANY_DEFENSIVE_SPELL.isHealingType());
 	}
 	
 	@Test
 	void when_getsDefensiveSpellPower_then_returnsDefensiveSpellPowerBasedOnValueAndFighterAptitude()
 	{
-		//FIXME: Fais la séparation Arrange - Act - ASsert, sinon c'est juste un gros blob de code qui doit être décodé!
-		int skillValue = 50;
-		int intelligence = 3;
-		DefensiveSpell skill = new DefensiveSpell(skillValue);
+		//Arrange
 		List<Skill> skillList = new ArrayList<Skill>();
 		skillList.add(new SkillMock());
-		skillList.add(skill);
-		FighterMock fighter = new FighterMock("", new Aptitudes(1, 2, intelligence, 4), skillList);
+		skillList.add(ANY_DEFENSIVE_SPELL);
+		FighterMock fighter = new FighterMock("", new Aptitudes(5, 5, 2, 5), skillList);
+		int expectedResult = 3;
 		
-		//FIXME: Pas besoin de refaire le calcul, juste avoir la valeur finale.
-		int expectedResult = (intelligence * skillValue / 100)*3;
+		//Act
+		int result = ANY_DEFENSIVE_SPELL.getPower(fighter);
 		
-		int result = skill.getPower(fighter);
+		//Assert
 		assertEquals(expectedResult, result);
 	}
 }

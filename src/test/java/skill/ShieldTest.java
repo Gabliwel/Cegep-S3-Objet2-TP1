@@ -14,36 +14,40 @@ import skill.mock.SkillMock;
 
 public class ShieldTest 
 {
+	public static final Shield ANY_SHIELD = new Shield(50);
+	
 	@Test
 	void when_checkIfShieldIsAnAttackTypeSkill_then_returnsFalse()
 	{
-		assertFalse(new Shield(50).isAttackType());
+		assertFalse(ANY_SHIELD.isAttackType());
 	}
 	
 	@Test
 	void when_checkIfShieldIsAParadeTypeSkill_then_returnsTrue()
 	{
-		assertTrue(new Shield(50).isParadeType());
+		assertTrue(ANY_SHIELD.isParadeType());
 	}
 	
 	@Test
 	void when_checkIfShieldIsAnHealingTypeSkill_then_returnsFalse()
 	{
-		assertFalse(new Shield(50).isHealingType());
+		assertFalse(ANY_SHIELD.isHealingType());
 	}
 	
 	@Test
 	void when_getsShieldPower_then_returnsShieldPowerBasedOnValueAndFighterAptitude()
 	{
-		int skillValue = 50;
-		int dexterity = 2;
-		Shield skill = new Shield(skillValue);
+		//Arrange
 		List<Skill> skillList = new ArrayList<Skill>();
 		skillList.add(new SkillMock());
-		skillList.add(skill);
-		FighterMock fighter = new FighterMock("", new Aptitudes(1, dexterity, 3, 4), skillList);
-		int expectedResult = dexterity * skillValue / 100;
-		int result = skill.getPower(fighter);
+		skillList.add(ANY_SHIELD);
+		FighterMock fighter = new FighterMock("", new Aptitudes(5, 2, 5, 5), skillList);
+		int expectedResult = 1;
+		
+		//Act
+		int result = ANY_SHIELD.getPower(fighter);
+		
+		//Assert
 		assertEquals(expectedResult, result);
 	}
 }

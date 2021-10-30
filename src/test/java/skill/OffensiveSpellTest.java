@@ -14,36 +14,39 @@ import skill.mock.SkillMock;
 
 public class OffensiveSpellTest 
 {
+	public static final OffensiveSpell ANY_OFFENSIVESPELL = new OffensiveSpell(50);
 	@Test
 	void when_checkIfOffensiveSpellIsAnAttackTypeSkill_then_returnsTrue()
 	{
-		assertTrue(new OffensiveSpell(50).isAttackType());
+		assertTrue(ANY_OFFENSIVESPELL.isAttackType());
 	}
 	
 	@Test
 	void when_checkIfOffensiveSpellIsAParadeTypeSkill_then_returnsFalse()
 	{
-		assertFalse(new OffensiveSpell(50).isParadeType());
+		assertFalse(ANY_OFFENSIVESPELL.isParadeType());
 	}
 	
 	@Test
 	void when_checkIfOffensiveSpellIsAnHealingTypeSkill_then_returnsFalse()
 	{
-		assertFalse(new OffensiveSpell(50).isHealingType());
+		assertFalse(ANY_OFFENSIVESPELL.isHealingType());
 	}
 	
 	@Test
 	void when_getsOffensiveSpellPower_then_returnsOffenisveSpellPowerBasedOnValueAndFighterAptitude()
 	{
-		int skillValue = 50;
-		int intelligence = 3;
-		OffensiveSpell skill = new OffensiveSpell(skillValue);
+		//Arrange
 		List<Skill> skillList = new ArrayList<Skill>();
 		skillList.add(new SkillMock());
-		skillList.add(skill);
-		FighterMock fighter = new FighterMock("", new Aptitudes(1, 2, intelligence, 4), skillList);
-		int expectedResult = (intelligence * skillValue / 100)*3;
-		int result = skill.getPower(fighter);
+		skillList.add(ANY_OFFENSIVESPELL);
+		FighterMock fighter = new FighterMock("", new Aptitudes(5, 5, 2, 5), skillList);
+		int expectedResult = 3;
+		
+		//Act
+		int result = ANY_OFFENSIVESPELL.getPower(fighter);
+		
+		//Assert
 		assertEquals(expectedResult, result);
 	}
 }

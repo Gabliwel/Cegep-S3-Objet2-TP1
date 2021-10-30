@@ -14,36 +14,40 @@ import skill.mock.SkillMock;
 
 public class SwordTest 
 {
+	public static final Sword ANY_SWORD = new Sword(50);
+	
 	@Test
 	void when_checkSwordIsAnAttackTypeSkill_then_returnsTrue()
 	{
-		assertTrue(new Sword(50).isAttackType());
+		assertTrue(ANY_SWORD.isAttackType());
 	}
 	
 	@Test
 	void when_checkIfSwordIsAParadeTypeSkill_then_returnsFalse()
 	{
-		assertFalse(new Sword(50).isParadeType());
+		assertFalse(ANY_SWORD.isParadeType());
 	}
 	
 	@Test
 	void when_checkIfSwordIsAnHealingTypeSkill_then_returnsFalse()
 	{
-		assertFalse(new Sword(50).isHealingType());
+		assertFalse(ANY_SWORD.isHealingType());
 	}
 	
 	@Test
 	void when_getsSwordPower_then_returnsOffenisveSpellPowerBasedOnValueAndFighterAptitude()
 	{
-		int skillValue = 50;
-		int strengtht = 1;
-		Sword skill = new Sword(skillValue);
+		//Arrange
 		List<Skill> skillList = new ArrayList<Skill>();
 		skillList.add(new SkillMock());
-		skillList.add(skill);
-		FighterMock fighter = new FighterMock("", new Aptitudes(strengtht, 2, 3, 4), skillList);
-		int expectedResult = strengtht * skillValue / 100;
-		int result = skill.getPower(fighter);
+		skillList.add(ANY_SWORD);
+		FighterMock fighter = new FighterMock("", new Aptitudes(2, 5, 5, 5), skillList);
+		int expectedResult = 1;
+		
+		//Act
+		int result = ANY_SWORD.getPower(fighter);
+		
+		//Assert
 		assertEquals(expectedResult, result);
 	}
 }

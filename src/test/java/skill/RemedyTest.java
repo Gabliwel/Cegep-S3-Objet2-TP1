@@ -15,36 +15,40 @@ import skill.mock.SkillMock;
 
 public class RemedyTest 
 {
+	public static final Remedy ANY_REMDY = new Remedy(50);
+	
 	@Test
 	void when_checkIfRemedyIsAnAttackTypeSkill_then_returnsFalse()
 	{
-		assertFalse(new Remedy(50).isAttackType());
+		assertFalse(ANY_REMDY.isAttackType());
 	}
 	
 	@Test
 	void when_checkIfRemedyIsAParadeTypeSkill_then_returnsFalse()
 	{
-		assertFalse(new Remedy(50).isParadeType());
+		assertFalse(ANY_REMDY.isParadeType());
 	}
 	
 	@Test
 	void when_checkIfRemedyIsAnHealingTypeSkill_then_returnsTrue()
 	{
-		assertTrue(new Remedy(50).isHealingType());
+		assertTrue(ANY_REMDY.isHealingType());
 	}
 	
 	@Test
 	void when_getsRemedyPower_then_returnsRemedyPowerBasedOnValueAndFighterAptitude()
 	{
-		int skillValue = 50;
-		int focus = 4;
-		Remedy skill = new Remedy(skillValue);
+		//Arrange
 		List<Skill> skillList = new ArrayList<Skill>();
 		skillList.add(new SkillMock());
-		skillList.add(skill);
-		FighterMock fighter = new FighterMock("", new Aptitudes(1, 2, 3, focus), skillList);
-		int expectedResult = focus * skillValue / 100;
-		int result = skill.getPower(fighter);
+		skillList.add(ANY_REMDY);
+		FighterMock fighter = new FighterMock("", new Aptitudes(5, 5, 5, 2), skillList);
+		int expectedResult = 1;
+		
+		//Act
+		int result = ANY_REMDY.getPower(fighter);
+		
+		//Assert
 		assertEquals(expectedResult, result);
 	}
 }
