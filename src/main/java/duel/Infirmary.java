@@ -4,6 +4,7 @@ import skill.Skill;
 
 public class Infirmary 
 {
+	//FIXME: Je pense qu'au lieu de passer la skill en paramètre de la méthode, j'aurais été la chercher dans Fighter une fois la vérification passée.
 	public void heal(Fighter fighter, Skill skill)
 	{
 		checkFighter(fighter);
@@ -19,7 +20,7 @@ public class Infirmary
 		if(fighter==null)
 		{
 			throw new IllegalArgumentException("The fighter must not be null");
-		}
+		} //FIXME: Wow!  Je pense que tu es le premier (sur 15) à vérifier si le guerrier est vivant!
 		if(!fighter.isAlive())
 		{
 			throw new IllegalArgumentException("The fighter must be still alive");

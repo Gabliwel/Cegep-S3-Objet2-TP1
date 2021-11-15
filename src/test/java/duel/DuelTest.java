@@ -65,6 +65,7 @@ public class DuelTest
 	@Test
 	void when_doingDuelAndInitiatorFighterCantAttack_then_provokedFigtherWinsRewardAndInitiatorLooseNoHealth()
 	{
+		//FIXME: Évite toi du setup pour rien en surchargeant des constructeurs!
 		FighterMock initiator = new FighterMock(ANY_NAME, new Aptitudes(25, 25, 25, 25), ANY_SKILL_LIST);
 		FighterMock provoked = new FighterMock(ANY_NAME, new Aptitudes(25, 25, 25, 25), ANY_SKILL_LIST);
 		Duel duel = new Duel(initiator, provoked);

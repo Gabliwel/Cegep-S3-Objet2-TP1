@@ -21,6 +21,8 @@ public class Duel
 		checkIfAlive(initiator);
 		checkIfAlive(provoked);
 		
+		//FIXME: Si tu te fais une référence à winner et loser dans cette méthode et que tu l'initialise avec des valeurs (par exemple, winner = attacker et loser = defender, il y a des cas qui sont
+		//déjà traités dans le defaut.  Ça te permet aussi
 		if(initiator.canAttack())
 		{
 			if(provoked.canDefend())
@@ -54,11 +56,13 @@ public class Duel
 	
 	private void endOfDuel(Fighter winner, Fighter loser, Skill reward)
 	{
+		//FIXME: Excellente délégation au Fighter!
 		winner.increaseAllAptitudes();
 		winner.addSkill(reward);
 		loser.decreaseAllAptitudes();
 	}
 	
+	//FIXME: Excellentes validations!
 	private void checkIfAlive(Fighter fighter) 
 	{
 		if(!fighter.isAlive())
